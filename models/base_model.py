@@ -47,4 +47,4 @@ class BaseModel:
 
         dic_cpy = self.__dict__.copy()
         dic_cpy.update(reprt)
-        return dic_cpy    
+        return dic_cpy

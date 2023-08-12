@@ -39,5 +39,5 @@ class FileStorage:
                 dictn = json.load(f)
                 key = {k: eval(v["__class__"])(**v) for k, v in dic.items()}
                 FileStorage.__objects = key
-        except:
+        except Exception as e:
             pass

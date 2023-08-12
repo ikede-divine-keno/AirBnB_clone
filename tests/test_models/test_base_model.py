@@ -152,6 +152,7 @@ class TestBaseModel_str(unittest.TestCase):
         boln = "datetime.datetime" in bm_str
         self.assertEqual(True, boln)
 
+
 class TestBaseModel_save(unittest.TestCase):
     """Unittests for testing save method of the BaseModel class."""
 
@@ -202,7 +203,8 @@ class TestBaseModel_save(unittest.TestCase):
         bm_id = "BaseModel." + bm.id
         with open("file.json", "r") as f:
             self.assertIn(bm_id, f.read())
-       
+
+
 class TestBaseModel_to_dict(unittest.TestCase):
     """Unittests for testing to_dict method of the BaseModel class."""
 
@@ -254,4 +256,4 @@ class TestBaseModel_to_dict(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()       
+    unittest.main()
