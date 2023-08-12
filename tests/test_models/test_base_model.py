@@ -52,10 +52,10 @@ class TestBaseModel_init(unittest.TestCase):
         dt = datetime.now()
         dt_repr = repr(dt)
         bm = BaseModel()
-        bm.id = "174289"
+        bm.id = "12345"
         bm.created_at = bm.updated_at = dt
         bm_str = bm.__str__()
-        self.assertIn("[BaseModel] (174289)", bm_str)
+        self.assertIn("[BaseModel] (12345)", bm_str)
         self.assertIn("'id': '174289'", bm_str)
         self.assertIn("'created_at': " + dt_repr, bm_str)
         self.assertIn("'updated_at': " + dt_repr, bm_str)
