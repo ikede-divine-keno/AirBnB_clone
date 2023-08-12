@@ -36,3 +36,15 @@ class BaseModel:
         """ Save Method """
         self.updated_at = datetime.now()
         #models.storage.save()
+
+    def to_dict(self):
+        """Return a dictionary representation of the instance"""
+        reprt = {
+            "__class__": self.__class__.__name__,
+            "created_at": self.created_at.isoformat(),
+            "updated_at": self.updated_at.isoformat()
+        }
+
+        dic_cpy = self.__dict__.copy()
+        dic_cpy.update(reprt)
+        return dic_cpy    
