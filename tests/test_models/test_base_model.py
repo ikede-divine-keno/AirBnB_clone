@@ -12,6 +12,7 @@ import unittest
 from datetime import datetime
 from time import sleep
 from models.base_model import BaseModel
+from models import storage
 
 
 class TestBaseModel_init(unittest.TestCase):
@@ -133,7 +134,7 @@ class TestBaseModel_str(unittest.TestCase):
         val2 = eval(bm_str[len_a:])
         con2 = bm.__dict__
         self.assertEqual(con2, val2)
-       """
+        """
 
     def test_string_return(self):
         """tests the string method to make sure it returns
