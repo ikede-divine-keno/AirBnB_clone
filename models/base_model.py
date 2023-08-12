@@ -17,7 +17,7 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            #models.storage.new(self)
+            models.storage.new(self)
         else:
             for key, values in kwargs.items():
                 if key != '__class__':
@@ -35,7 +35,7 @@ class BaseModel:
     def save(self):
         """ Save Method """
         self.updated_at = datetime.now()
-        #models.storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """Return a dictionary representation of the instance"""
