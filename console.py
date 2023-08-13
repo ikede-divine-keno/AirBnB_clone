@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Define the HBNBCommand class."""
 import cmd
+import json
 from models.base_model import BaseModel
 from models import storage
 from shlex import split
@@ -31,28 +32,36 @@ class HBNBCommand(cmd.Cmd):
     }
 
     def tokenize(args_txt):
-    """Parse all argurments for the console"""
-    return split(args_txt)
+        """
+        Parse all argurments for the console
+        """
+
+        return split(args_txt)
 
     def arg_finder(argt):
-    """ Get argument inside of ' ( arg) ' """
-    p = argt.find('(')
-    return argt[p + 1: -1]
+        """ Get argument inside of ' ( arg) ' """
+
+        p = argt.find('(')
+        return argt[p + 1: -1]
 
     def typeCast(val_txt):
-    """Cast in int or float a value"""
-    if val_txt.isnumeric():
-        return int(val_txt)
-    else:
-        try:
-            return float(val_txt)
-        except Exception as e:
-            return val_txt
+        """Cast in int or float a value"""
+        if val_txt.isnumeric():
+            return int(val_txt)
+        else:
+            try:
+                return float(val_txt)
+            except Exception as e:
+                return val_txt
 
     def for_quit(self, arg):
         """Quit command to exit the program
         """
         return True
+
+    def help_quit(self):
+        """Help command for quit"""
+        print("Quit command to exit the program\n")
 
     def if_EOF(self, arg):
         """Exit with 'EOF' signal.
@@ -60,10 +69,15 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
+    def help_EOF(self):
+        """Help command for EOF"""
+        print("EOF command to exit the program\n")
+
     def if_emptyline(self):
         """Ignore an empty line.
         """
         pass
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
