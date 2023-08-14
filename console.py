@@ -22,9 +22,9 @@ def tokenize(args):
             return [a.strip(",") for a in split(args)]
         else:
             tok = split(args[:key.span()[0]])
-            retl = [a.strip(",") for a in tok]
-            retl.append(key.group())
-            return retl
+            ken = [a.strip(",") for a in tok]
+            ken.append(key.group())
+            return ken
     else:
         tok = split(args[:token.span()[0]])
         ken = [a.strip(",") for a in tok]
