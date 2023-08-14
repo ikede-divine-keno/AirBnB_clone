@@ -19,16 +19,16 @@ def tokenize(arg):
     brackets = re.search(r"\[(.*?)\]", arg)
     if curly_braces is None:
         if brackets is None:
-            return [i.strip(",") for i in split(arg)]
+            return [a.strip(",") for a in split(arg)]
         else:
-            lexer = split(arg[:brackets.span()[0]])
-            retl = [i.strip(",") for i in lexer]
-            retl.append(brackets.group())
-            return retl
+            lex = split(arg[:brackets.span()[0]])
+            ret = [a.strip(",") for a in lex]
+            ret.append(brackets.group())
+            return ret
     else:
-        lexer = split(arg[:curly_braces.span()[0]])
-        retl = [i.strip(",") for i in lexer]
-        retl.append(curly_braces.group())
+        lex = split(arg[:curly_braces.span()[0]])
+        ret = [a.strip(",") for a in lex]
+        ret.append(curly_braces.group())
         return retl
 
 
