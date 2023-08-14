@@ -61,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing upon receiving an empty line."""
         pass
 
-    def base(self, arg):
+    def default(self, arg):
         """Default behavior for cmd module when input is invalid or incompatible"""
         argdict = {
             "all": self.do_all,
