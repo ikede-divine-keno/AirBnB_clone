@@ -221,53 +221,53 @@ class HBNBCommand(cmd.Cmd):
         msg = "Count how much instances have a given class\n"
         print(msg)
 
-    def do_update(self, args):
+    def do_update(self, arg):
         """Usage: update <class> <id> <attribute_name> <attribute_value> or
        <class>.update(<id>, <attribute_name>, <attribute_value>) or
        <class>.update(<id>, <dictionary>)
         Update a class instance of a given id by adding or updating
         a given attribute key/value pair or dictionary."""
-        argt = tokenize(args)
-        ob_dic = storage.all()
+        argl = tokenize(arg)
+        objdict = storage.all()
 
-        if len(argt) == 0:
+        if len(argl) == 0:
             print("** class name missing **")
             return False
-        if argt[0] not in HBNBCommand.__classes:
+        if argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return False
-        if len(argt) == 1:
+        if len(argl) == 1:
             print("** instance id missing **")
             return False
-        if "{}.{}".format(argt[0], argt[1]) not in ob_dic.keys():
+        if "{}.{}".format(argl[0], argl[1]) not in objdict.keys():
             print("** no instance found **")
             return False
-        if len(argt) == 2:
+        if len(argl) == 2:
             print("** attribute name missing **")
             return False
-        if len(argt) == 3:
+        if len(argl) == 3:
             try:
-                type(eval(argt[2])) != dict
+                type(eval(argl[2])) != dict
             except NameError:
                 print("** value missing **")
                 return False
 
-        if len(argt) == 4:
-            ob = ob_dic["{}.{}".format(argt[0], argt[1])]
-            if argt[2] in ob.__class__.__dict__.keys():
-                val_typ = type(ob.__class__.__dict__[argt[2]])
-                ob.__dict__[argt[2]] = val_typ(argt[3])
+        if len(argl) == 4:
+            obj = objdict["{}.{}".format(argl[0], argl[1])]
+            if argl[2] in obj.__class__.__dict__.keys():
+                valtype = type(obj.__class__.__dict__[argl[2]])
+                obj.__dict__[argl[2]] = valtype(argl[3])
             else:
-                ob.__dict__[argt[2]] = argt[3]
-        elif type(eval(argt[2])) == dict:
-            ob = ob_dic["{}.{}".format(argt[0], argt[1])]
-            for k, v in eval(argt[2]).items():
-                if (k in ob.__class__.__dict__.keys() and
-                        type(ob.__class__.__dict__[k]) in {str, int, float}):
-                    val_typ = type(ob.__class__.__dict__[k])
-                    ob.__dict__[k] = val_typ(v)
+                obj.__dict__[argl[2]] = argl[3]
+        elif type(eval(argl[2])) == dict:
+            obj = objdict["{}.{}".format(argl[0], argl[1])]
+            for k, v in eval(argl[2]).items():
+                if (k in obj.__class__.__dict__.keys() and
+                        type(obj.__class__.__dict__[k]) in {str, int, float}):
+                    valtype = type(obj.__class__.__dict__[k])
+                    obj.__dict__[k] = valtype(v)
                 else:
-                    ob.__dict__[k] = v
+                    obj.__dict__[k] = v
         storage.save()
 
     def help_update(self):
