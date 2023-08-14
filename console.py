@@ -222,8 +222,6 @@ class HBNBCommand(cmd.Cmd):
         msg += "\"<attribute value>\"\n"
         print(msg)
 
-    @staticmethod
-
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
