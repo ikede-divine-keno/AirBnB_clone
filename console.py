@@ -14,7 +14,7 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-def parser(arg):
+def tokenize(args):
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
     if curly_braces is None:
