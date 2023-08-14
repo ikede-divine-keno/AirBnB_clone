@@ -14,22 +14,22 @@ from models.amenity import Amenity
 from models.review import Review
 
 
-def tokenize(args):
-    token = re.search(r"\{(.*?)\}", args)
-    key = re.search(r"\[(.*?)\]", args)
-    if token is None:
-        if key is None:
-            return [a.strip(",") for a in split(args)]
+def parse(arg):
+    curly_braces = re.search(r"\{(.*?)\}", arg)
+    brackets = re.search(r"\[(.*?)\]", arg)
+    if curly_braces is None:
+        if brackets is None:
+            return [i.strip(",") for i in split(arg)]
         else:
-            tok = split(args[:key.span()[0]])
-            ken = [a.strip(",") for a in tok]
-            ken.append(key.group())
-            return ken
+            lexer = split(arg[:brackets.span()[0]])
+            retl = [i.strip(",") for i in lexer]
+            retl.append(brackets.group())
+            return retl
     else:
-        tok = split(args[:token.span()[0]])
-        ken = [a.strip(",") for a in tok]
-        ken.append(token.group())
-        return ken
+        lexer = split(arg[:curly_braces.span()[0]])
+        retl = [i.strip(",") for i in lexer]
+        retl.append(curly_braces.group())
+        return retl
 
 
 class HBNBCommand(cmd.Cmd):
