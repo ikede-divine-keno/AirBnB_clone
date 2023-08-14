@@ -49,11 +49,19 @@ class HBNBCommand(cmd.Cmd):
         "Review"
     }
 
-    def emptyline(self):
+    __commands = {
+        "show",
+        "count",
+        "all",
+        "destroy",
+        "update"
+    }
+
+    def if_emptyline(self):
         """Do nothing upon receiving an empty line."""
         pass
 
-    def default(self, arg):
+    def base(self, arg):
         """Default behavior for cmd module when input is invalid or incompatible"""
         argdict = {
             "all": self.do_all,
@@ -78,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program."""
         return True
 
-    def do_EOF(self, arg):
+    def if_EOF(self, arg):
         """EOF signal to exit the program."""
         print("")
         return True
@@ -204,6 +212,17 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     obj.__dict__[k] = v
         storage.save()
+
+    def help_update(self):
+        """Help command for update"""
+
+        msg = "Updates an instance based on the class "
+        msg += "name and id by adding or updating attribute\n"
+        msg += "Usage: update <class name> <id> <attribute name>  "
+        msg += "\"<attribute value>\"\n"
+        print(msg)
+
+    @staticmethod
 
 
 if __name__ == "__main__":
