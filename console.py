@@ -104,6 +104,10 @@ class HBNBCommand(cmd.Cmd):
             print(eval(argl[0])().id)
             storage.save()
 
+    def help_create(self):
+        """Help command for create"""
+        print("Create a BaseModel and save the json in a file\n")
+
     def do_show(self, arg):
         """Usage: show <class> <id> or <class>.show(<id>)
         Display the string representation of a class instance of a given id.
@@ -120,6 +124,13 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         else:
             print(objdict["{}.{}".format(argl[0], argl[1])])
+
+    def help_show(self):
+        """Help command for show"""
+
+        msg = "Prints the string representation of an instance "
+        msg += "based on the class name and id\n"
+        print(msg)
 
     def do_destroy(self, arg):
         """Usage: destroy <class> <id> or <class>.destroy(<id>)
@@ -138,6 +149,10 @@ class HBNBCommand(cmd.Cmd):
             del objdict["{}.{}".format(argl[0], argl[1])]
             storage.save()
 
+    def help_destroy(self):
+        """Help command for destroy"""
+        print("Deletes an instance based on the class name and id\n")
+
     def do_all(self, arg):
         """Usage: all or all <class> or <class>.all()
         Display string representations of all instances of a given class.
@@ -154,6 +169,13 @@ class HBNBCommand(cmd.Cmd):
                     objl.append(obj.__str__())
             print(objl)
 
+    def help_all(self):
+        """Help command for all"""
+
+        msg = "Prints all string representation of all instances "
+        msg += "based or not on the class name\n"
+        print(msg)
+
     def do_count(self, arg):
         """Usage: count <class> or <class>.count()
         Retrieve the number of instances of a given class."""
@@ -163,6 +185,12 @@ class HBNBCommand(cmd.Cmd):
             if argl[0] == obj.__class__.__name__:
                 count += 1
         print(count)
+
+    def help_count(self):
+        """Help command for count"""
+
+        msg = "Count how much instances have a given class\n"
+        print(msg)
 
     def do_update(self, arg):
         """Usage: update <class> <id> <attribute_name> <attribute_value> or
