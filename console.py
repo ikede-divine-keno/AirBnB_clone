@@ -261,13 +261,13 @@ class HBNBCommand(cmd.Cmd):
                 ob.__dict__[argt[2]] = argt[3]
         elif type(eval(argt[2])) == dict:
             ob = ob_dic["{}.{}".format(argt[0], argt[1])]
-            for key, val in eval(argt[2]).items():
-                if (key in ob.__class__.__dict__.keys() and
-                        type(ob.__class__.__dict__[key]) in {str, int, float}):
-                    val_typ = type(ob.__class__.__dict__[key])
-                    ob.__dict__[key] = val_typ(val)
+            for k, v in eval(argt[2]).items():
+                if (k in ob.__class__.__dict__.keys() and
+                        type(ob.__class__.__dict__[k]) in {str, int, float}):
+                    val_typ = type(ob.__class__.__dict__[k])
+                    ob.__dict__[k] = val_typ(v)
                 else:
-                    ob.__dict__[key] = val
+                    ob.__dict__[k] = v
         storage.save()
 
     def help_update(self):
