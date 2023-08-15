@@ -88,6 +88,11 @@ class HBNBCommand(cmd.Cmd):
         print("")
         return True
 
+    def emptyline(self):
+        """Ignore an empty line.
+        """
+        pass
+
     def do_create(self, arg):
         """Usage: create <class>
         Create a new class instance and print its id.
