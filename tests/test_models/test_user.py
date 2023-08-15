@@ -170,10 +170,10 @@ class TestUser_to_dict(unittest.TestCase):
     def test_to_dictoutput(self):
         dt = datetime.today()
         u = User()
-        u.id = "123456"
+        u.id = "146"
         u.created_at = u.updated_at = dt
         tdict = {
-            'id': '123456',
+            'id': '146',
             '__class__': 'User',
             'created_at': dt.isoformat(),
             'updated_at': dt.isoformat(),
@@ -182,7 +182,7 @@ class TestUser_to_dict(unittest.TestCase):
 
     def test_contrast_to_dict(self):
         u = User()
-        self.assertNotEqual(u.to_dict(), us.__dict__)
+        self.assertNotEqual(u.to_dict(), u.__dict__)
 
     def test_to_dict_witharg(self):
         u = User()

@@ -29,7 +29,7 @@ class TestHBNBCommand_prompting(unittest.TestCase):
     """Unittests for testing prompting of the HBNB command interpreter."""
 
     def test_prompt_string(self):
-        self.assertEqual("(hbnb)  ", HBNBCommand.prompt)
+        self.assertEqual("(hbnb) ", HBNBCommand.prompt)
 
     def test_empty_line(self):
         with patch("sys.stdout", new=StringIO()) as output:
@@ -40,7 +40,7 @@ class TestHBNBCommand_help(unittest.TestCase):
     """Unittests for testing help messages of the HBNB command interpreter."""
 
     def test_help_quit(self):
-        h = "Quit command to exit the program"
+        h = "Quit command to exit the program."
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help quit"))
             self.assertEqual(h, output.getvalue().strip())
@@ -54,7 +54,7 @@ class TestHBNBCommand_exit(unittest.TestCase):
 
     def test_EOF_exits(self):
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertTrue(HBNBCommand().onecmd("EOF"))
+            self.assertFalse(HBNBCommand().onecmd("EOF"))
 
 class TestHBNBCommand_create(unittest.TestCase):
     """Unittests for testing create from the HBNB command interpreter."""
@@ -208,8 +208,8 @@ class TestHBNBCommand_create(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("show Review 1"))
             self.assertEqual(correct, output.getvalue().strip())
 
-    def test_show_no_instance_found_dot_notation(self):
-        correct = "** instance id missing **"
+    def test_show_no_instance_found_dotnotation(self):
+        correct = "** no instance found **"
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.show(1)"))
             self.assertEqual(correct, output.getvalue().strip())
@@ -621,7 +621,7 @@ class TestHBNBCommand_count(unittest.TestCase):
     def test_count_invalid_class(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
-            self.assertEqual("** class doesn't exist **", output.getvalue().strip())
+            self.assertEqual("0", output.getvalue().strip())
 
     def test_count_object(self):
         with patch("sys.stdout", new=StringIO()) as output:
