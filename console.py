@@ -57,10 +57,6 @@ class HBNBCommand(cmd.Cmd):
         "update"
     }
 
-    def do_emptyline(self):
-        """Do nothing upon receiving an empty line."""
-        pass
-
     def default(self, arg):
         """Default behavior for cmd module when input is invalid or
         incompatible"""
