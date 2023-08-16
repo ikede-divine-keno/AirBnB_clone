@@ -182,7 +182,7 @@ class TestCity_to_dict(unittest.TestCase):
 
     def test_contrast_to_dict_dunder_dict(self):
         c = City()
-        self.assertNotEqual(cy.to_dict(), c.__dict__)
+        self.assertNotEqual(c.to_dict(), c.__dict__)
 
     def test_to_dict_withargs(self):
         c = City()
